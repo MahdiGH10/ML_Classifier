@@ -1,0 +1,248 @@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CHAPTER 1: DATASET       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This chapter presents the datasets used in this project, their characteristics, and the preprocessing pipeline applied to prepare the data for machine learning models.
+
+\section{Data Sources}
+\label{sec:datasources}
+
+To ensure robust model training and generalization, we collected news articles from two well-established publicly available datasets:
+
+\subsection{AG News Dataset}
+
+The AG News Corpus is a collection of more than 1 million news articles gathered from over 2,000 news sources. For this project, we utilized a subset containing approximately 120,000 articles categorized into four classes. This dataset is widely used in natural language processing research and provides high-quality, professionally written news content.
+
+\textbf{Dataset characteristics:}
+\begin{itemize}
+    \item \textbf{Source}: Academic benchmark dataset from AG News Corpus
+    \item \textbf{Size}: ~120,000 articles
+    \item \textbf{Categories}: World, Sports, Business, Sci/Tech
+    \item \textbf{Format}: CSV with text and label columns
+    \item \textbf{Language}: English
+\end{itemize}
+
+\subsection{20 Newsgroups Dataset}
+
+The 20 Newsgroups dataset is a classic text classification benchmark containing approximately 18,000 newsgroup documents partitioned across 20 different newsgroups. We extracted and mapped relevant categories to align with our 4-class schema.
+
+\textbf{Dataset characteristics:}
+\begin{itemize}
+    \item \textbf{Source}: Usenet newsgroup discussions
+    \item \textbf{Size}: ~18,000 documents (subset used)
+    \item \textbf{Original Categories}: 20 newsgroups
+    \item \textbf{Mapped Categories}: Selected groups mapped to our 4 classes
+    \item \textbf{Format}: Text files organized by category
+\end{itemize}
+
+% PLACEHOLDER FOR FIGURE
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{mergepic.png}
+    \caption{Data collection from AG News and 20 Newsgroups datasets}
+    \label{fig:datasources}
+\end{figure}
+
+
+
+\section{Category Mapping and Class Distribution}
+\label{sec:classdist}
+
+To create a unified 4-class classification problem, we performed careful mapping of subcategories from both datasets:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|p{6cm}|}
+\hline
+\textbf{Class} & \textbf{Label} & \textbf{Description} \\ \hline
+Business & 0 & Finance, economics, corporate news, stock markets, companies \\ \hline
+Sports & 1 & Athletics, games, competitions, sports teams, tournaments \\ \hline
+Tech & 2 & Technology, computing, AI, software, hardware, Internet \\ \hline
+World & 3 & International news, politics, world events, diplomacy \\ \hline
+\end{tabular}
+\caption{Category definitions and label encoding}
+\label{tab:categories}
+\end{table}
+
+After merging and mapping, we obtained a well-balanced dataset with the following distribution:
+
+\begin{itemize}
+    \item \textbf{Business}: ~30,000 articles
+    \item \textbf{Sports}: ~30,000 articles
+    \item \textbf{Tech}: ~30,000 articles
+    \item \textbf{World}: ~38,000 articles
+\end{itemize}
+
+% PLACEHOLDER FOR FIGURE
+\begin{figure}[h]
+    \centering
+    % INSERT: fig_class_distribution.png - Bar chart showing class counts
+   \includegraphics[width=0.9\textwidth]{téléchargement.png}
+    \caption{Distribution of articles across four categories}
+    \label{fig:classdist}
+\end{figure}
+
+The relatively balanced distribution (variation within 25\%) eliminates the need for aggressive resampling techniques and allows the models to learn without strong class bias. That means the four classes have similar numbers of articles. 
+The largest class (World: 38{,}000) is only about 27\% larger than the smallest classes (30{,}000). 
+This is calculated as:
+
+\[
+\frac{38{,}000 - 30{,}000}{30{,}000} = 0.27 = 27\%.
+\]
+
+
+This eliminates the need for aggressive resampling techniques.
+
+\begin{itemize}
+    \item The model will not become biased toward predicting the largest class.
+    \item All four categories receive roughly equal attention during training.
+    \item The model learns fair patterns for each category.
+\end{itemize}
+
+\section{Data Preprocessing Pipeline}
+\label{sec:preprocessing}
+
+Text data requires extensive preprocessing to convert raw documents into a format suitable for machine learning algorithms. Our preprocessing pipeline consists of several sequential steps:
+
+\subsection{Text Cleaning}
+
+Raw text often contains noise that does not contribute to semantic understanding:
+
+\begin{itemize}
+    \item \textbf{HTML Removal}: Strip HTML tags and entities (e.g., \texttt{\&nbsp;}, \texttt{<br>})
+    \item \textbf{Special Characters}: Remove non-alphanumeric characters except spaces.
+    \item \textbf{URL Removal}: Eliminate URLs and email addresses.
+    \item \textbf{Number Handling}: Replace or remove numeric values.
+    \item \textbf{Extra Whitespace}: Normalize multiple spaces to single space.
+\end{itemize}
+
+\subsection{Text Normalization}
+
+Normalization ensures consistency across the corpus:
+
+\begin{itemize}
+    \item \textbf{Lowercase Conversion}: Convert all text to lowercase to treat "Technology" and "technology" as the same token.
+    \item \textbf{Tokenization}: Split text into individual words (tokens).
+    \item \textbf{Stopword Removal}: Remove common words that carry little semantic meaning (e.g., "the", "is", "at", "which") using NLTK's English stopword list.
+\end{itemize}
+
+\subsection{Text Quality Assessment}
+
+We performed quality checks to identify and handle problematic documents:
+
+\begin{itemize}
+    \item Documents with fewer than 10 words were flagged as potentially low-quality
+    \item Duplicate articles were identified and removed
+    \item Encoding errors (e.g., mojibake) were detected and corrected
+\end{itemize}
+
+% PLACEHOLDER FOR ALGORITHM
+\begin{verbatim}
+# Preprocessing function
+def preprocess_text(text):
+    # Remove HTML
+    text = re.sub(r'<.*?>', '', text)
+    # Lowercase
+    text = text.lower()
+    # Remove special characters
+    text = re.sub(r'[^a-z0-9\s]', '', text)
+    # Tokenize and remove stopwords
+    tokens = [word for word in text.split() 
+              if word not in stopwords]
+    return ' '.join(tokens)
+\end{verbatim}
+
+\section{Exploratory Data Analysis}
+\label{sec:eda}
+
+Before model training, we conducted exploratory data analysis to understand the characteristics of our dataset.
+
+\subsection{Text Length Distribution}
+
+We analyzed the distribution of article lengths (word count) across categories:
+
+% PLACEHOLDER FOR FIGURE
+\begin{figure}[h]
+    \centering
+    % INSERT: fig_text_length_distribution.png - Box plots showing word count by category
+    \includegraphics[width=1\textwidth, height=11cm]{mean.png}
+
+    \caption{Distribution of article lengths (word count) by category}
+    \label{fig:textlength}
+\end{figure}
+
+\textbf{Key findings:}
+\begin{itemize}
+    \item Average article length: 180-220 words
+    \item Tech articles tend to be slightly longer (mean: 210 words)
+    \item Sports articles are typically concise (mean: 185 words)
+    \item Most articles fall between 100-300 words
+\end{itemize}
+
+\subsection{Vocabulary Analysis}
+
+We examined vocabulary size and word frequency distributions:
+
+\begin{itemize}
+    \item \textbf{Total vocabulary}: ~75,000 unique tokens (before preprocessing)
+    \item \textbf{After preprocessing}: ~50,000 unique tokens
+    \item \textbf{Word frequency}: Follows Zipf's law (few very frequent words, many rare words)
+\end{itemize}
+
+% PLACEHOLDER FOR FIGURE
+\begin{figure}[h]
+    \centering
+    % INSERT: fig_word_frequency.png - Log-log plot of word frequency
+    \includegraphics[width=1\textwidth, height=10cm, ]{51.png}
+
+    \caption{Word frequency distribution (log-log scale)}
+    \label{fig:wordfreq}
+\end{figure}
+
+\subsection{Most Frequent Terms by Category}
+
+Analyzing the most frequent terms in each category reveals discriminative features:
+
+\textbf{Business}: company, market, stock, bank, financial, price, deal, CEO
+
+\textbf{Sports}: game, team, player, win, season, coach, championship, score
+
+\textbf{Tech}: software, computer, technology, Internet, data, system, digital, app
+
+\textbf{World}: government, minister, country, president, international, security, political
+
+% PLACEHOLDER FOR FIGURE
+\begin{figure}[h]
+    \centering
+    % INSERT: fig_top_words_per_category.png - 4 bar charts showing top words
+    \fbox{\parbox{0.7\textwidth}{\centering \textit{[PLACEHOLDER: Top 10 words per category]}\\ \textbf{fig\_top\_words\_category.png}}}
+    \caption{Most frequent terms in each category}
+    \label{fig:topwords}
+\end{figure}
+
+\section{Train-Validation-Test Split}
+\label{sec:split}
+
+To ensure unbiased evaluation, we split the dataset into three subsets:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|r|r|}
+\hline
+\textbf{Subset} & \textbf{Size} & \textbf{Percentage} \\ \hline
+Training Set & ~90,000 & 70\% \\ \hline
+Validation Set & ~19,000 & 15\% \\ \hline
+Test Set & ~19,000 & 15\% \\ \hline
+\textbf{Total} & \textbf{~128,000} & \textbf{100\%} \\ \hline
+\end{tabular}
+\caption{Dataset split for training, validation, and testing}
+\label{tab:datasplit}
+\end{table}
+
+\textbf{Stratification}: The split was performed using stratified sampling to maintain the same class distribution in all three subsets, ensuring that each set is representative of the overall data distribution.
+
+\section{Summary}
+
+This chapter presented the data foundation of our classification project. We combined two high-quality news datasets (AG News and 20 Newsgroups) to create a balanced corpus of ~128,000 articles across four categories. The preprocessing pipeline cleaned and normalized the text data, and exploratory analysis revealed distinct lexical patterns across categories. The dataset is now prepared for feature extraction and model training, which will be discussed in Chapter \ref{chap:2}.

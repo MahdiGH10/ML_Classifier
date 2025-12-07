@@ -1,0 +1,59 @@
+
+
+
+\markboth{\MakeUppercase{Introduction}}{}%
+\addcontentsline{toc}{chapter}{Introduction}%
+
+\section*{Context and Motivation}
+
+In today's digital age, news organizations and media platforms generate massive volumes of textual content daily. Automated document classification has become essential for organizing, retrieving, and recommending relevant information to users. Manual categorization is time-consuming, error-prone, and simply not scalable for modern content management systems.
+
+This project addresses the challenge of \textbf{automatically classifying  articles into predefined categories} using machine learning techniques. Specifically, we focus on a 4-class classification problem covering: \textit{Business}, \textit{Sports}, \textit{Technology}, and \textit{World} news.
+
+\section*{Problem Statement}
+
+The core problem can be formulated as follows: Given a news article's textual content, predict which category it belongs to among four possible classes. This task presents several challenges:
+
+\begin{itemize}
+    \item \textbf{Semantic Ambiguity}: Articles may contain overlapping themes (e.g., technology in business)
+    \item \textbf{High Dimensionality}: Text data requires transformation into numerical features
+    \item \textbf{Generalization}: Models must perform well on unseen articles from diverse sources
+    \item \textbf{Class Balance}: Ensuring fair representation across all categories
+\end{itemize}
+
+\section*{Objectives}
+
+The main objectives of this work are:
+
+\begin{enumerate}
+    \item Collect and preprocess a large-scale, balanced dataset from multiple news sources
+    \item Implement and compare multiple machine learning algorithms for text classification
+    \item Apply appropriate feature engineering techniques (TF-IDF vectorization)
+    \item Optimize model hyperparameters using cross-validation
+    \item Achieve high classification performance (F1-score $\geq$ 0.85)
+    \item Provide comprehensive evaluation with multiple metrics
+\end{enumerate}
+
+\section*{Approach and Contributions}
+
+Our approach follows a rigorous machine learning pipeline: data collection from multiple sources (AG News, 20 Newsgroups), extensive preprocessing, feature extraction using TF-IDF with bigrams, training of three different algorithms (Logistic Regression, Support Vector Machines, Random Forest), hyperparameter tuning with 5-fold stratified cross-validation, and comprehensive evaluation.
+
+The main contributions of this work include:
+\begin{itemize}
+    \item A well-balanced dataset of over 120,000 news articles across 4 categories
+    \item Comparative analysis of three state-of-the-art classification algorithms
+    \item Comprehensive evaluation using accuracy, precision, recall, F1-score, and ROC-AUC
+    \item Production-ready models saved for deployment
+\end{itemize}
+
+\section*{Report Organization}
+
+This report is organized as follows: 
+
+Chapter \ref{chap:chapterone} presents the datasets used and the preprocessing pipeline, including data cleaning, text normalization, and exploratory data analysis. 
+
+Chapter \ref{chap:2} describes the methodology, including feature engineering, model selection, hyperparameter tuning, and presents the experimental results with detailed performance comparisons.
+
+Finally, the Conclusion synthesizes our findings and discusses future research directions. 
+
+
