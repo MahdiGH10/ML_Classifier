@@ -225,34 +225,37 @@ print(f"Category: {category}")
 ## 📁 Project Structure
 
 ```
-news-classifier/
-├── app.py                          # Streamlit web application
-├── requirements.txt                # Python dependencies
-├── README.md                       # Project documentation
-├── qr_code.png                     # QR code for demo access
-│
-├── FinalModel/                     # Trained models
-│   └── models_4class/
-│       ├── best_model.pkl          # LinearSVC model
-│       ├── tfidf_vectorizer.pkl    # TF-IDF vectorizer
-│       ├── label_encoder.pkl       # Label encoder
-│       ├── categories.txt          # Category names
-│       └── metadata.json           # Model metadata
-│
-├── Rapport/                        # LaTeX report
-│   ├── rapport.tex                 # Main report file
-│   ├── introduction.tex            # Introduction
-│   ├── chapitre1.tex              # Dataset & Preprocessing
-│   ├── chapitre2.tex              # Methodology & Results
-│   ├── abstract.tex               # Abstract (EN/FR)
-│   ├── Biblio.bib                 # Bibliography
-│   └── poster.tex                 # Scientific poster
-│
-├── notebooks/                      # Jupyter notebooks
-│   ├── Ml_Classiferfinal.ipynb    # Main analysis notebook
-│   └── realworld_classifier.ipynb # Experiments
-│
-└── .gitignore                      # Git ignore file
+ML_Classifier/
+├── src/
+│   └── app_enhanced.py          # Main Streamlit application
+├── models/
+│   └── FinalModel/
+│       └── models_4class/
+│           ├── best_model.pkl          # Trained LinearSVC model
+│           ├── tfidf_vectorizer.pkl    # TF-IDF vectorizer
+│           ├── label_encoder.pkl       # Label encoder
+│           ├── categories.txt          # Category names
+│           └── metadata.json           # Model metadata
+├── notebooks/
+│   └── Ml_Classiferfinal.ipynb  # Training notebook
+├── data/
+│   └── README.md                 # Dataset information
+├── assets/
+│   └── background.png            # UI background image
+├── Rapport/                      # LaTeX report
+│   ├── rapport.tex              # Main report file
+│   ├── introduction.tex         # Introduction
+│   ├── chapitre1.tex           # Dataset & Preprocessing
+│   ├── chapitre2.tex           # Methodology & Results
+│   ├── abstract.tex            # Abstract (EN/FR)
+│   ├── Biblio.bib              # Bibliography
+│   └── poster.tex              # Scientific poster
+├── requirements.txt             # Python dependencies
+├── .gitignore                   # Git ignore rules
+├── LICENSE                      # MIT License
+├── DEPLOYMENT_GUIDE.md         # Deployment instructions
+├── generate_qr.py              # QR code generator
+└── README.md                    # This file
 ```
 
 ---
