@@ -350,49 +350,15 @@ Actual Bus  4263  23    402   235
 
 ---
 
-## ☁️ Deployment
+## 🤝 Contributing
 
-### Streamlit Cloud (Recommended)
+Contributions are welcome! Please follow these steps:
 
-1. **Push to GitHub**
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/YOUR_USERNAME/news-classifier.git
-git push -u origin main
-```
-
-2. **Deploy on Streamlit Cloud**
-   - Go to [share.streamlit.io](https://share.streamlit.io)
-   - Sign in with GitHub
-   - Click "New app"
-   - Select repository: `YOUR_USERNAME/news-classifier`
-   - Main file: `app.py`
-   - Click "Deploy"
-
-3. **Generate QR Code**
-```python
-import qrcode
-qr = qrcode.make('YOUR_DEPLOYED_URL')
-qr.save('qr_code.png')
-```
-
-### Alternative: Hugging Face Spaces
-1. Create account on [huggingface.co](https://huggingface.co)
-2. Create new Space (Streamlit)
-3. Upload files
-4. Auto-deploys at `https://huggingface.co/spaces/USERNAME/news-classifier`
-
----
-
-## 👥 Team
-
-**Student Name**  
-Institut Supérieur des Technologies de Bizerte (ITBS)  
-Machine Learning Mini-Project | 2025
-
-**Supervisor:** Professor Name
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
@@ -402,38 +368,47 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
+## 🏫 Academic Project
+
+**Institution**: IT Business School (ITBS)  
+**Course**: Machine Learning  
+**Year**: 2024-2025  
+**Type**: Mini-Project
+
+---
+
+## 👥 Authors
+
+- **Mahdi GH** - [GitHub](https://github.com/MahdiGH10)
+
+---
+
 ## 🙏 Acknowledgments
 
-- **ITBS** - Institut Supérieur des Technologies de Bizerte
-- **AG News Dataset** - Academic dataset for text classification
-- **20 Newsgroups** - Classic ML benchmark dataset
-- **Scikit-learn** - Machine learning library
-- **Streamlit** - Web framework for ML apps
+- AG News Dataset
+- 20 Newsgroups Dataset
+- Streamlit for the amazing framework
+- scikit-learn for ML tools
+- ITBS faculty for guidance
 
 ---
 
 ## 📧 Contact
 
 For questions or feedback:
-- **Email:** your.email@example.com
-- **GitHub:** [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
-- **LinkedIn:** [Your Name](https://linkedin.com/in/yourprofile)
+- GitHub: [@MahdiGH10](https://github.com/MahdiGH10)
+- Repository: [ML_Classifier](https://github.com/MahdiGH10/ML_Classifier)
 
 ---
 
 ## 🔗 Links
 
-- 📄 [Full Report (LaTeX)](Rapport/rapport.pdf)
-- 📊 [Scientific Poster](Rapport/poster.pdf)
-- 🌐 [Live Demo](YOUR_DEPLOYED_URL_HERE)
-- 💻 [GitHub Repository](https://github.com/YOUR_USERNAME/news-classifier)
+- [Live Demo](https://your-deployment-url.streamlit.app) *(coming soon)*
+- [Documentation](https://github.com/MahdiGH10/ML_Classifier/wiki)
+- [Report Issues](https://github.com/MahdiGH10/ML_Classifier/issues)
 
 ---
 
-<div align="center">
+⭐ **Star this repository if you find it helpful!**
 
-**⭐ Star this repository if you find it useful!**
-
-Made with ❤️ at ITBS | 2025
-
-</div>
+Made with ❤️ by ITBS Students
