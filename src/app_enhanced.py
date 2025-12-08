@@ -54,7 +54,7 @@ st.markdown("""
     .main {
         background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
         background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(102, 74, 162, 0.85) 50%, rgba(15, 23, 42, 0.95) 100%), 
-                    url('background.png');
+                    url('../assets/background.png');
         background-size: 200% 200%, cover;
         background-position: 0% 50%, center;
         background-attachment: fixed, fixed;
@@ -517,11 +517,17 @@ st.markdown("""
 # Load the trained model
 @st.cache_resource
 def load_models():
-    model = joblib.load('FinalModel/models_4class/best_model.pkl')
-    vectorizer = joblib.load('FinalModel/models_4class/tfidf_vectorizer.pkl')
-    label_encoder = joblib.load('FinalModel/models_4class/label_encoder.pkl')
+    import os
+    # Get the project root directory (parent of src/)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(current_dir)
+    models_path = os.path.join(project_root, 'models', 'FinalModel', 'models_4class')
     
-    with open('FinalModel/models_4class/metadata.json', 'r') as f:
+    model = joblib.load(os.path.join(models_path, 'best_model.pkl'))
+    vectorizer = joblib.load(os.path.join(models_path, 'tfidf_vectorizer.pkl'))
+    label_encoder = joblib.load(os.path.join(models_path, 'label_encoder.pkl'))
+    
+    with open(os.path.join(models_path, 'metadata.json'), 'r') as f:
         metadata = json.load(f)
     
     return model, vectorizer, label_encoder, metadata
