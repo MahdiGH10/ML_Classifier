@@ -26,7 +26,12 @@ st.set_page_config(
     page_title="News Article Classifier | ITBS",
     page_icon="🔍",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://github.com/MahdiGH10/ML_Classifier',
+        'Report a bug': 'https://github.com/MahdiGH10/ML_Classifier/issues',
+        'About': '### News Article Classifier\nBuilt with Streamlit & scikit-learn'
+    }
 )
 
 # Enhanced CSS with Animations and Glassmorphism
@@ -51,22 +56,26 @@ st.markdown("""
         100% { background-position: 0% 50%; }
     }
     
-    .main {
-        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(102, 74, 162, 0.85) 50%, rgba(15, 23, 42, 0.95) 100%), 
-                    url('../assets/background.png');
-        background-size: 200% 200%, cover;
-        background-position: 0% 50%, center;
-        background-attachment: fixed, fixed;
-        background-repeat: no-repeat, no-repeat;
-        animation: gradientShift 15s ease infinite;
+    /* Force light background for all browsers and devices */
+    .main, .stApp {
+        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 50%, #f8fafc 100%) !important;
+        background-size: 200% 200% !important;
+        animation: gradientShift 15s ease infinite !important;
+        color: #1e293b !important;
     }
     
-    @supports not (backdrop-filter: blur(10px)) {
+    /* Override Streamlit dark mode */
+    @media (prefers-color-scheme: dark) {
+        .main, .stApp, [data-testid="stAppViewContainer"] {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 50%, #f8fafc 100%) !important;
+            color: #1e293b !important;
+        }
+    }
+    
+    /* Mobile optimization */
+    @media (max-width: 768px) {
         .main {
-            background: linear-gradient(135deg, #0f172a 0%, #664aa2 50%, #0f172a 100%);
-            background-size: 200% 200%;
-            animation: gradientShift 15s ease infinite;
+            padding: 1rem 0.5rem !important;
         }
     }
     
@@ -84,7 +93,7 @@ st.markdown("""
     
     .main-header {
         background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-        color: white;
+        color: white !important;
         padding: 2.5rem 2rem;
         border-radius: 16px;
         margin-bottom: 2rem;
@@ -97,6 +106,7 @@ st.markdown("""
     .main-title {
         font-size: 2.5rem;
         font-weight: 700;
+        color: white !important;
         margin: 0;
         letter-spacing: -0.5px;
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -290,11 +300,15 @@ st.markdown("""
     }
     
     /* Sidebar Glassmorphism */
-    .css-1d391kg, [data-testid="stSidebar"] {
-        background: rgba(255, 255, 255, 0.8);
+    .css-1d391kg, [data-testid="stSidebar"], section[data-testid="stSidebar"] {
+        background: rgba(255, 255, 255, 0.95) !important;
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border-right: 1px solid rgba(226, 232, 240, 0.5);
+    }
+    
+    [data-testid="stSidebar"] * {
+        color: #1e293b !important;
     }
     
     /* Info Box Animation */
@@ -365,7 +379,8 @@ st.markdown("""
         font-size: 1rem;
         padding: 1rem;
         font-family: 'Inter', sans-serif;
-        background: rgba(255, 255, 255, 0.9);
+        background: white !important;
+        color: #1e293b !important;
         backdrop-filter: blur(5px);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -437,6 +452,53 @@ st.markdown("""
     .badge-sports { 
         background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); 
         color: #166534; 
+    }
+    
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+        .main-title {
+            font-size: 1.75rem !important;
+        }
+        
+        .main-subtitle {
+            font-size: 0.95rem !important;
+        }
+        
+        .main-header {
+            padding: 1.5rem 1rem !important;
+        }
+        
+        .card {
+            padding: 1.25rem !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        .prediction-category {
+            font-size: 1.75rem !important;
+        }
+        
+        .metric-container {
+            grid-template-columns: 1fr !important;
+        }
+        
+        .stats-grid {
+            grid-template-columns: 1fr !important;
+        }
+        
+        .stTabs [data-baseweb="tab"] {
+            padding: 0.5rem 1rem !important;
+            font-size: 0.9rem !important;
+        }
+    }
+    
+    /* Ensure all text is visible */
+    .stMarkdown, .stText, p, span, div {
+        color: #1e293b !important;
+    }
+    
+    /* Fix plotly charts for dark mode */
+    .js-plotly-plot {
+        background: white !important;
     }
     .badge-tech { 
         background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); 

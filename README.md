@@ -1,13 +1,21 @@
-# 📰 News Article Classifier - ML Mini-Project
+# 📰 News Article Classifier - ML Classification Project
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](YOUR_DEPLOYED_URL_HERE)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://github.com/MahdiGH10/ML_Classifier)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3.2-orange.svg)](https://scikit-learn.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.30+-red.svg)](https://streamlit.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> **Automated news article classification system using Machine Learning**  
-> Institut Supérieur des Technologies de Bizerte (ITBS) - Machine Learning Mini-Project 2025
+> **Automated news article classification system using Machine Learning & Natural Language Processing**  
+> IT Business School (ITBS) - Machine Learning Project | December 2025
 
-![News Classifier Demo](https://img.shields.io/badge/Demo-Live-success)
+<div align="center">
+
+![Accuracy](https://img.shields.io/badge/Accuracy-90.70%25-success)
+![F1 Score](https://img.shields.io/badge/F1--Score-0.9068-blue)
+![Dataset](https://img.shields.io/badge/Dataset-144K%20articles-informational)
+
+</div>
 
 ---
 
@@ -142,8 +150,8 @@ The system uses **machine learning** with TF-IDF feature extraction and **Suppor
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/YOUR_USERNAME/news-classifier.git
-cd news-classifier
+git clone https://github.com/MahdiGH10/ML_Classifier.git
+cd ML_Classifier
 ```
 
 2. **Create virtual environment** (recommended)
@@ -169,7 +177,7 @@ python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt')"
 
 5. **Run the application**
 ```bash
-streamlit run app.py
+streamlit run src/app_enhanced.py
 ```
 
 6. **Open browser**
@@ -184,10 +192,11 @@ Network URL: http://YOUR_IP:8501
 
 ### Web Interface
 
-1. **Launch the app**: `streamlit run app.py`
+1. **Launch the app**: `streamlit run src/app_enhanced.py`
 2. **Enter text**: Paste a news article in the text area
-3. **Click "Classify Article"**: Get instant prediction
-4. **View results**: See category, confidence scores, and statistics
+3. **Click "🚀 Classify Article"**: Get instant prediction with confidence scores
+4. **View results**: See category, confidence scores, and detailed statistics
+5. **Try samples**: Test with pre-loaded example articles from each category
 
 ### Programmatic Usage
 
@@ -197,9 +206,9 @@ import re
 from nltk.corpus import stopwords
 
 # Load models
-model = joblib.load('FinalModel/models_4class/best_model.pkl')
-vectorizer = joblib.load('FinalModel/models_4class/tfidf_vectorizer.pkl')
-label_encoder = joblib.load('FinalModel/models_4class/label_encoder.pkl')
+model = joblib.load('models/FinalModel/models_4class/best_model.pkl')
+vectorizer = joblib.load('models/FinalModel/models_4class/tfidf_vectorizer.pkl')
+label_encoder = joblib.load('models/FinalModel/models_4class/label_encoder.pkl')
 
 # Preprocess text
 def clean_text(text):
