@@ -236,36 +236,27 @@ print(f"Category: {category}")
 ```
 ML_Classifier/
 ├── src/
-│   └── app_enhanced.py          # Main Streamlit application
+│   └── app_enhanced.py              # Enhanced Streamlit web application
 ├── models/
 │   └── FinalModel/
 │       └── models_4class/
-│           ├── best_model.pkl          # Trained LinearSVC model
-│           ├── tfidf_vectorizer.pkl    # TF-IDF vectorizer
-│           ├── label_encoder.pkl       # Label encoder
-│           ├── categories.txt          # Category names
-│           └── metadata.json           # Model metadata
+│           ├── best_model.pkl       # Trained LinearSVC classifier
+│           ├── tfidf_vectorizer.pkl # TF-IDF feature extractor
+│           ├── label_encoder.pkl    # Category label encoder
+│           ├── categories.txt       # Class names list
+│           └── metadata.json        # Model performance metrics
 ├── notebooks/
-│   └── Ml_Classiferfinal.ipynb  # Training notebook
+│   └── Ml_Classiferfinal.ipynb      # Complete training pipeline
 ├── data/
-│   └── README.md                 # Dataset information
-├── assets/
-│   └── background.png            # UI background image
-├── Rapport/                      # LaTeX report
-│   ├── rapport.tex              # Main report file
-│   ├── introduction.tex         # Introduction
-│   ├── chapitre1.tex           # Dataset & Preprocessing
-│   ├── chapitre2.tex           # Methodology & Results
-│   ├── abstract.tex            # Abstract (EN/FR)
-│   ├── Biblio.bib              # Bibliography
-│   └── poster.tex              # Scientific poster
-├── requirements.txt             # Python dependencies
-├── .gitignore                   # Git ignore rules
-├── LICENSE                      # MIT License
-├── DEPLOYMENT_GUIDE.md         # Deployment instructions
-├── generate_qr.py              # QR code generator
-└── README.md                    # This file
+│   └── README.md                    # Dataset documentation
+├── assets/                          # (Empty - for future resources)
+├── requirements.txt                 # Python dependencies
+├── .gitignore                       # Git ignore patterns
+├── LICENSE                          # MIT License
+└── README.md                        # Project documentation (this file)
 ```
+
+**Note:** The `Rapport/` folder (LaTeX reports) and other development files are not included in the repository to keep it focused on the ML application.
 
 ---
 
