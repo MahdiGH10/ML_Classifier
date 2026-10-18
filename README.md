@@ -124,6 +124,16 @@ The system uses **machine learning** with TF-IDF feature extraction and **Suppor
 | **Recall**          | 0.9083  |
 | **F1-Score**        | 0.9068  |
 
+### Model Comparison (held-out test set, 21,679 articles)
+| Model | Accuracy | Precision | Recall | F1 (weighted) | F1 (macro) |
+|---|---|---|---|---|---|
+| Logistic Regression | 0.9024 | 0.9023 | 0.9024 | 0.9022 | 0.9021 |
+| **LinearSVC (default C)** | **0.9083** | 0.9081 | 0.9083 | 0.9082 | 0.9080 |
+| Random Forest | 0.7985 | 0.8196 | 0.7985 | 0.8001 | 0.8004 |
+| LinearSVC (grid-searched, shipped) | 0.9070 | n/a | n/a | 0.9068 | n/a |
+
+Grid search (5-fold CV, `C` x `loss`) selected `C=0.1, squared_hinge` with a CV score of 0.9057. On the test set it scored 0.14 points below the default LinearSVC, which is within noise, so the stronger-regularised model was kept. The per-class table below is for the default LinearSVC.
+
 ### Per-Class Performance
 | Category   | Precision | Recall | F1-Score | Support |
 |------------|-----------|--------|----------|---------|
@@ -415,3 +425,12 @@ For questions or feedback:
 ⭐ **Star this repository if you find it helpful!**
 
 Made with ❤️ by ITBS Students
+
+---
+
+## Known Limitations
+
+- **Balancing before splitting.** Class balancing was applied to the full dataset before the train/validation/test split, so duplicated minority-class rows can appear in both train and test. The reported 90.7% may be slightly optimistic. Next step: split first, then balance only the training set.
+- **Domain.** Trained on AG News plus 20 Newsgroups; accuracy on other news sources, languages or very short headlines is untested.
+- **Business vs Tech.** The main confusion is between Business and Tech (F1 0.88 and 0.89) because company news fits both.
+- **Bag-of-words baseline.** TF-IDF + linear SVM is a strong, fast baseline. A fine-tuned transformer (e.g. DistilBERT) is the natural comparison.
